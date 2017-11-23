@@ -24,7 +24,7 @@ def construct_mapping(self, node, deep=False):
         self.flatten_mapping(node)
     else:
         msg = 'expected a mapping node, but found %s' % node.id
-        raise yaml.constructor.ConstructError(None,
+        raise yaml.constructor.ConstructorError(None,
                                               None,
                                               msg,
                                               node.start_mark)
@@ -35,7 +35,7 @@ def construct_mapping(self, node, deep=False):
         try:
             hash(key)
         except TypeError as err:
-            raise yaml.constructor.ConstructError(
+            raise yaml.constructor.ConstructorError(
                 'while constructing a mapping', node.start_mark,
                 'found unacceptable key (%s)' % err, key_node.start_mark)
         value = self.construct_object(value_node, deep=deep)
